@@ -10,4 +10,9 @@ class Assunto extends Model
     use HasFactory;
 
     protected $table = 'assunto';
+    protected $primaryKey = 'codAs';
+
+    protected $fillable = [
+        'descricao',
+    ];
 }

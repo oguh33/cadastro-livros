@@ -5,14 +5,13 @@
 
 <div class="d-flex justify-content-end">
     <div class="d-flex">
-        <a href="/cadastrarBaixasAnimaisForm" class="btn btn-primary mr-2">Cadastrar livro</a>
+        <a href="/cadastrarBaixasAnimaisForm" class="btn btn-success mr-2">Cadastrar livro</a>
     </div>
 </div>
 <div class="mt-4">
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Título</th>
             <th scope="col">Editora</th>
             <th scope="col">Edição</th>

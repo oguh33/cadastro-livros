@@ -8,7 +8,14 @@ use App\Http\Controllers\RelatorioController;
 
 Route::get('/', [LivroController::class, 'index']);
 Route::get('/livro', [LivroController::class, 'index'])->name('livro.index');
+
+
+Route::delete('/assunto/{id}', [AssuntoController::class, 'destroy'])->name('assunto.destroy');
+Route::put('/assunto/{id}', [AssuntoController::class, 'update'])->name('assunto.update');
+Route::get('/assunto/create', [AssuntoController::class, 'create'])->name('assunto.create');
 Route::get('/assunto', [AssuntoController::class, 'index'])->name('assunto.index');
+Route::get('/assunto/{id}/edit', [AssuntoController::class, 'edit'])->name('assunto.edit');
+Route::post('/assunto', [AssuntoController::class, 'store'])->name('assunto.store');
 
 Route::delete('/autor/{id}', [AutorController::class, 'destroy'])->name('autor.destroy');
 Route::put('/autor/{id}', [AutorController::class, 'update'])->name('autor.update');

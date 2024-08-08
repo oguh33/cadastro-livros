@@ -29,7 +29,7 @@ class AutorController extends Controller
         return view('autor/create');
     }
 
-    public function store(StoreAutorRequest $request, Autor $autor)
+    public function store(StoreAutorRequest $request)
     {
        $this->service->create(
            CreateAutorDTO::makeFromRequest($request)

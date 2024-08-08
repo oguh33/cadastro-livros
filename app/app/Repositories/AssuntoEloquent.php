@@ -2,17 +2,18 @@
 
 namespace App\Repositories;
 
-use App\DTO\CreateAutorDTO;
+use App\DTO\CreateAssuntoDTO;
+use App\DTO\UpdateAssuntoDTO;
 use App\DTO\UpdateAutorDTO;
-use App\Models\Autor;
+use App\Models\Assunto;
 use Illuminate\Database\Eloquent\Collection;
 use \stdClass;
 
-class AutorEloquent implements AutorRepositoryInterface
+class AssuntoEloquent implements AssuntoRepositoryInterface
 {
 
     public function __construct(
-        protected Autor $model
+        protected Assunto $model
     )
     { }
 
@@ -21,10 +22,9 @@ class AutorEloquent implements AutorRepositoryInterface
         return $this->model
                     ->where(function ($query) use ($filter) {
                         if($filter) {
-                            $query->where('nome', 'like', "%$filter%");
+                            $query->where('descricao', 'like', "%$filter%");
                         }
                     })
-                    ->orderby('nome')
                     ->get();
     }
 
@@ -44,23 +44,23 @@ class AutorEloquent implements AutorRepositoryInterface
         $this->model->findOrFail($id)->delete();
     }
 
-    public function create(CreateAutorDTO $dto): Autor
+    public function create(CreateAssuntoDTO $dto): Assunto
     {
-        $autor = $this->model->create( (array) $dto );
-        return $autor;
+        $assunto = $this->model->create( (array) $dto );
+        return $assunto;
     }
 
-    public function update(UpdateAutorDTO $dto): stdClass|null
+    public function update(UpdateAssuntoDTO $dto): stdClass|null
     {
-        if( !$autor = $this->model->find($dto->codAu) ) {
+        if( !$assunto = $this->model->find($dto->codAs) ) {
             return null;
         }
 
-        $autor->update(
+        $assunto->update(
             (array) $dto
         );
 
-        return (object) $autor->toArray();
+        return (object) $assunto->toArray();
     }
 
 }
