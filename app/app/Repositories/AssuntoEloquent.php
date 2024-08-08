@@ -25,6 +25,7 @@ class AssuntoEloquent implements AssuntoRepositoryInterface
                             $query->where('descricao', 'like', "%$filter%");
                         }
                     })
+                    ->orderby('descricao')
                     ->get();
     }
 

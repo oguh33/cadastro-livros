@@ -7,7 +7,13 @@ use App\Http\Controllers\AutorController;
 use App\Http\Controllers\RelatorioController;
 
 Route::get('/', [LivroController::class, 'index']);
+
+Route::delete('/livro/{id}', [LivroController::class, 'destroy'])->name('livro.destroy');
+Route::put('/livro/{id}', [LivroController::class, 'update'])->name('livro.update');
+Route::get('/livro/create', [LivroController::class, 'create'])->name('livro.create');
 Route::get('/livro', [LivroController::class, 'index'])->name('livro.index');
+Route::get('/livro/{id}/edit', [LivroController::class, 'edit'])->name('livro.edit');
+Route::post('/livro', [LivroController::class, 'store'])->name('livro.store');
 
 
 Route::delete('/assunto/{id}', [AssuntoController::class, 'destroy'])->name('assunto.destroy');

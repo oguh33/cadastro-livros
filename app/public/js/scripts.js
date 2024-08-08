@@ -20,3 +20,9 @@ function _activeModal(router, msg)
     $('#btn-remove').html(link);
     $('#excluir_remover').modal('show');
 }
+
+$(function() {
+    $('#autor-multiple-selected').multiselect({
+        nonSelectedText: 'Selecione um ou mais autores'
+    });
+});

@@ -5,7 +5,7 @@
 
 <div class="d-flex justify-content-end">
     <div class="d-flex">
-        <a href="/cadastrarBaixasAnimaisForm" class="btn btn-success mr-2">Cadastrar livro</a>
+        <a href="{{ route('livro.create') }}" class="btn btn-success mr-2">Cadastrar livro</a>
     </div>
 </div>
 <div class="mt-4">

@@ -8,11 +8,6 @@ Baixa o repositorio
 ```
 git clone https://github.com/oguh33/cadastro-livros.git
 ```
-Acessar o diretório app e rodar o composer.
-
-```
-composer install 
-```
 
 Subir o serviço docker, caso não esteja iniciado
 
@@ -27,10 +22,15 @@ Outras vezes
 docker-compose up -d
 ```
 
-Acessando o container do projeto e criando as tabelas de banco via migrations.
+Acessar o diretório app e rodar o composer.
 ```
 docker-compose exec app bash 
 cd app
+composer install 
+```
+
+Dentro do container do projeto e criando as tabelas de banco via migrations.
+```
 php artisan migrate
 ```
 
