@@ -19,6 +19,8 @@ class AssuntoEloquent implements AssuntoRepositoryInterface
 
     public function getAll(string $filter = null): Collection
     {
+        try {
+
         return $this->model
                     ->where(function ($query) use ($filter) {
                         if($filter) {
@@ -27,41 +29,64 @@ class AssuntoEloquent implements AssuntoRepositoryInterface
                     })
                     ->orderby('descricao')
                     ->get();
+        } catch (\Exception $e) {
+            throw new \Exception("Ocorreu um erro ao consultar os assuntos");
+        }
     }
 
     public function findOne(string $id): stdClass|null
     {
-        $autor = $this->model->find($id);
+        try {
 
-        if( !$autor ) {
-            return null;
+            $autor = $this->model->find($id);
+
+            if( !$autor ) {
+                throw new \Exception("Não foi possível encontrar o assunto: ($id)");
+            }
+
+            return (object) $autor->toArray();
+        }catch (\Exception $e) {
+            throw new \Exception("Ocorreu um erro ao consultar o assunto: ($id)");
         }
-
-        return (object) $autor->toArray();
     }
 
     public function delete(string $id): void
     {
-        $this->model->findOrFail($id)->delete();
+        try {
+
+            $this->model->findOrFail($id)->delete();
+
+        }catch (\Exception $e) {
+            throw new \Exception("Ocorreu um erro ao excluir o assunto");
+        }
     }
 
     public function create(CreateAssuntoDTO $dto): Assunto
     {
-        $assunto = $this->model->create( (array) $dto );
-        return $assunto;
+        try {
+            $assunto = $this->model->create( (array) $dto );
+            return $assunto;
+        }catch (\Exception $e) {
+            throw new \Exception("Ocorreu um erro ao cadastrar o novo assunto");
+        }
     }
 
     public function update(UpdateAssuntoDTO $dto): stdClass|null
     {
-        if( !$assunto = $this->model->find($dto->codAs) ) {
-            return null;
+        try {
+
+            if( !$assunto = $this->model->find($dto->codAs) ) {
+                throw new \Exception("Não foi possível encontrar o assunto ($dto->codAs) ao editar.");
+            }
+
+            $assunto->update(
+                (array) $dto
+            );
+
+            return (object) $assunto->toArray();
+        }catch (\Exception $e) {
+            throw new \Exception("Ocorreu um erro ao editar o assunto");
         }
-
-        $assunto->update(
-            (array) $dto
-        );
-
-        return (object) $assunto->toArray();
     }
 
 }
