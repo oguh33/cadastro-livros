@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\DTO\CreateAutorDTO;
 use App\DTO\CreateLivroDTO;
+use App\DTO\RelatorioLivroDTO;
 use App\DTO\UpdateAutorDTO;
 use App\DTO\UpdateLivroDTO;
 use App\Models\Assunto;
@@ -33,6 +34,53 @@ class LivroEloquent implements LivroRepositoryInterface
                     })
                     ->orderby('titulo')
                     ->get();
+    }
+
+    public function findBy(RelatorioLivroDTO $dto): Collection|null
+    {
+        $dbQuery = $this->modelLivro
+            ->with('assuntos', 'autores')
+            ->join('livro_assunto', 'livro.codl', '=', 'livro_assunto.livro_codl')
+            ->join('assunto', 'livro_assunto.assunto_codAs', '=', 'assunto.codAs')
+            ->join('livro_autor', 'livro.codl', '=', 'livro_autor.livro_codl')
+            ->join('autor', 'livro_autor.autor_codAu', '=', 'autor.codAu');
+
+        if( !is_null($dto->titulo) ) {
+            $titulo = $dto->titulo;
+            $dbQuery->where(function ($query) use ($titulo) {
+                    $query->where('titulo', 'like', "%$titulo%");
+            });
+        }
+
+        if( !is_null($dto->editora) ) {
+            $editora = $dto->editora;
+            $dbQuery->where(function ($query) use ($editora) {
+                $query->where('editora', 'like', "%$editora%");
+            });
+        }
+
+        if( !is_null($dto->edicao) ) {
+            $edicao = $dto->edicao;
+            $dbQuery->where(function ($query) use ($edicao) {
+                $query->where('edicao', 'like', "%$edicao%");
+            });
+        }
+
+        if( !is_null($dto->anoPublicacao) ) {
+            $dbQuery->where(['anoPublicacao' => $dto->anoPublicacao]);
+        }
+
+        if( !is_null($dto->assuntos) ) {
+            $dbQuery->whereIn('assunto.codAs', $dto->assuntos);
+        }
+
+        if( !is_null($dto->autores) ) {
+            $dbQuery->whereIn('autor.codAu', $dto->autores);
+        }
+
+
+        $dbQuery->orderby('titulo');
+        return $dbQuery->get();
     }
 
     public function findOne(string $id): Livro|null

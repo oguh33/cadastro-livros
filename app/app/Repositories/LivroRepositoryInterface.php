@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\DTO\CreateLivroDTO;
+use App\DTO\RelatorioLivroDTO;
 use App\DTO\UpdateLivroDTO;
 use App\Models\Livro;
 use Illuminate\Database\Eloquent\Collection;

@@ -48,6 +48,14 @@ $(function() {
         nonSelectedText: 'Selecione um ou mais autores'
     });
 
+    $('#rel-autor-multiple-selected').multiselect({
+        nonSelectedText: 'Todos'
+    });
+
+    $('#assunto-multiple-selected').multiselect({
+        nonSelectedText: 'Selecione um ou mais assuntos'
+    });
+
 
     $("#datepicker").datepicker({
         autoclose: true,

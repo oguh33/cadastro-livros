@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('editora', 40);
             $table->integer('edicao');
             $table->string('anoPublicacao', 40);
-            $table->integer('cod_valor');
+            $table->float('valor');
             $table->timestamps();
         });
     }

@@ -31,3 +31,4 @@ Route::get('/autor', [AutorController::class, 'index'])->name('autor.index');
 Route::post('/autor', [AutorController::class, 'store'])->name('autor.store');
 
 Route::get('/relatorio', [RelatorioController::class, 'index'])->name('relatorio.index');
+Route::post('/relatorio/livros', [RelatorioController::class, 'livros'])->name('relatorio.livros');
