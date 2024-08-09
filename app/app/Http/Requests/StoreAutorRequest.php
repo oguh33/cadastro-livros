@@ -29,10 +29,10 @@ class StoreAutorRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'nome.required' => 'A nome do Autor é obrigatório',
-            'nome.min' => 'A nome do Autor deve ter no mínimo 3 caracteres',
-            'nome.max' => 'A nome do Autor deve ter no máximo 40 caracteres',
-            'nome.unique' => 'A nome do Autor já foi cadastrado',
+            'nome.required' => 'O nome do Autor é obrigatório',
+            'nome.min' => 'O nome do Autor deve ter no mínimo 3 caracteres',
+            'nome.max' => 'O nome do Autor deve ter no máximo 40 caracteres',
+            'nome.unique' => 'O nome do Autor já foi cadastrado',
         ];
     }
 }
