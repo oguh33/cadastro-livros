@@ -1,58 +1,61 @@
-# Setup Docker PHP MySQL Laravel - Cadastrar livros
-### Para executar o projeto siga as orientações abaixo.
+
+# Setup Docker PHP MySQL Laravel - Cadastrar Livros
+
+### Siga as instruções abaixo para configurar e executar o projeto.
 
 ## Instruções
 
-Baixa o repositorio
+1. **Clone o repositório:**
+   ```
+   git clone https://github.com/oguh33/cadastro-livros.git
+   ```
 
-```
-git clone https://github.com/oguh33/cadastro-livros.git
-```
+2. **Inicie o serviço Docker:**
+   Se o Docker não estiver iniciado, suba o serviço com o seguinte comando:
 
-Subir o serviço docker, caso não esteja iniciado
+   - **Primeira execução (com build):**
+     ```
+     docker-compose up --build 
+     ```
 
-Primeira vez, fazer um build
-```
-docker-compose up --build 
-```
+   - **Execuções subsequentes (sem build):**
+     ```
+     docker-compose up -d
+     ```
 
-Se precisar rodar novamente não precisa da opção --build
-```
-docker-compose up -d
-```
+3. **Acesse o container da aplicação:**
+   Entre no container da aplicação para rodar o Composer:
+   ```
+   docker-compose exec app bash
+   ```
 
-Acessar o diretório app e rodar o composer.
-Entrando no container da aplicação
-```
-docker-compose exec app bash
-```
-Acesso o diretório da aplicação
-```
-cd app
-```
-Atualizando composer
-```
-composer install 
-```
+4. **Configure o Composer:**
+   Navegue até o diretório da aplicação e instale as dependências do Composer:
+   ```
+   cd app
+   composer install 
+   ```
 
-Ainda no container e na pasta app vamos criando o arquivo .env
-```
-cp .env.example .env
-```
+5. **Crie o arquivo `.env` a partir de uma copia do arquivo `.env.example`:**
+   Ainda dentro do container e no diretório `app`:
+   ```
+   cp .env.example .env
+   ```
 
+6. **Execute o comando de migrations do banco de dados:**
+   Ainda no container, crie as tabelas do banco de dados usando as migrações:
+   ```
+   php artisan migrate
+   ```
 
-Dentro do container do projeto e criando as tabelas de banco via migrations
-```
-php artisan migrate
-```
+7. **Finalize e saia do container (opcional):**
+   Após rodar as migrações, você pode sair do container:
+   ```
+   exit
+   ```
 
-Após rodar as migrations pode sair da máquina (container). Não obrigatório
-```
-exit
-```
-
-Serviço disponível na porta 8000
-
-```
-http://localhost:8000
-```
+8. **Acesse a aplicação:**
+   O serviço estará disponível na porta 8000:
+   ```
+   http://localhost:8000
+   ```
