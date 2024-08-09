@@ -1,6 +1,6 @@
 
 # 📚 Desafio do Teste Técnico Spassu - Cadastro de Livros
-Este projeto desenvolvido para o Desafio do Teste Técnico Spassu. O objetivo do desafio é criar um sistema para cadastro de livros utilizando boas práticas de desenvolvimento.
+Este projeto foi desenvolvido para o Desafio do Teste Técnico Spassu. O objetivo do desafio é criar um sistema para cadastro de livros utilizando boas práticas de desenvolvimento.
 
 ## 🚀 Tecnologias Utilizadas
 
