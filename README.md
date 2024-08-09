@@ -1,7 +1,15 @@
 
-# 📚 Setup Docker PHP MySQL Laravel - Cadastro de Livros
+# 📚 Desafio do Teste Técnico Spassu - Cadastro de Livros
+Este projeto desenvolvido para o Desafio do Teste Técnico Spassu. O objetivo do desafio é criar um sistema para cadastro de livros utilizando boas práticas de desenvolvimento.
 
-### 🚀 Siga as instruções abaixo para configurar e executar o projeto.
+## 🚀 Tecnologias Utilizadas
+
+- **Docker**: Para conteinerização do ambiente de desenvolvimento.
+- **PHP 8.3.6**: Linguagem de programação utilizada no backend.
+- **Laravel**: Framework PHP utilizado para estruturação do projeto.
+- **MySQL 8.0**: Banco de dados relacional para armazenamento das informações dos livros.
+
+### 📝 Siga as instruções abaixo para configurar e executar o projeto.
 
 ## 🛠️ Instruções
 
