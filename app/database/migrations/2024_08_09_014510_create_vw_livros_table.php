@@ -25,7 +25,7 @@ return new class extends Migration
                         JOIN livro l ON la.livro_codl = l.codl
                         JOIN livro_assunto las ON l.codl = las.livro_codl
                         JOIN assunto s ON las.assunto_codAs = s.codAs
-                        ORDER BY a.nome, l.titulo;");
+                        ORDER BY a.nome, l.titulo");
     }
 
     /**

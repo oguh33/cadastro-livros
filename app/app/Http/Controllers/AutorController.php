@@ -6,7 +6,6 @@ use App\DTO\CreateAutorDTO;
 use App\DTO\UpdateAutorDTO;
 use App\Http\Requests\StoreAutorRequest;
 use App\Http\Requests\UpdateAutorRequest;
-use App\Models\Autor;
 use App\Services\AutorService;
 use Illuminate\Http\Request;
 
