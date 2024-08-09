@@ -2,16 +2,12 @@
 
 namespace App\Services;
 
-use App\DTO\CreateAutorDTO;
 use App\DTO\CreateLivroDTO;
-use App\DTO\RelatorioLivroDTO;
-use App\DTO\UpdateAutorDTO;
 use App\DTO\UpdateLivroDTO;
-use App\Models\Autor;
 use App\Models\Livro;
 use App\Repositories\LivroRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
-use \stdClass;
+
 
 class LivroService
 {

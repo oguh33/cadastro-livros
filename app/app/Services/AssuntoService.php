@@ -3,13 +3,9 @@
 namespace App\Services;
 
 use App\DTO\CreateAssuntoDTO;
-use App\DTO\CreateAutorDTO;
 use App\DTO\UpdateAssuntoDTO;
-use App\DTO\UpdateAutorDTO;
 use App\Models\Assunto;
-use App\Models\Autor;
 use App\Repositories\AssuntoRepositoryInterface;
-use App\Repositories\AutorRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 use \stdClass;
 
