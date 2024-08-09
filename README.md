@@ -12,23 +12,25 @@ git clone https://github.com/oguh33/cadastro-livros.git
 Subir o serviço docker, caso não esteja iniciado
 
 Primeira vez, fazer um build
-
 ```
 docker-compose up --build 
 ```
 
-Outras vezes
+Se precisar rodar novamente não precisa da opção --build
 ```
 docker-compose up -d
 ```
 
 Acessar o diretório app e rodar o composer.
+Entrando no container da aplicação
 ```
 docker-compose exec app bash
 ```
+Acesso o diretório da aplicação
 ```
 cd app
 ```
+Atualizando composer
 ```
 composer install 
 ```
@@ -39,12 +41,12 @@ cp .env.example .env
 ```
 
 
-Dentro do container do projeto e criando as tabelas de banco via migrations.
+Dentro do container do projeto e criando as tabelas de banco via migrations
 ```
 php artisan migrate
 ```
 
-Após rodar as migrations pode sair da máquina (container)
+Após rodar as migrations pode sair da máquina (container). Não obrigatório
 ```
 exit
 ```
