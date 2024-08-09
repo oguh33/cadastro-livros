@@ -24,10 +24,20 @@ docker-compose up -d
 
 Acessar o diretório app e rodar o composer.
 ```
-docker-compose exec app bash 
+docker-compose exec app bash
+```
+```
 cd app
+```
+```
 composer install 
 ```
+
+Ainda no container e na pasta app vamos criando o arquivo .env
+```
+cp .env.example .env
+```
+
 
 Dentro do container do projeto e criando as tabelas de banco via migrations.
 ```
