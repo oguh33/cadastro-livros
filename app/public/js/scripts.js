@@ -21,8 +21,40 @@ function _activeModal(router, msg)
     $('#excluir_remover').modal('show');
 }
 
+const mascaraMoeda = (event) => {
+    const onlyDigits = event.target.value
+        .split("")
+        .filter(s => /\d/.test(s))
+        .join("")
+        .padStart(3, "0")
+    const digitsFloat = onlyDigits.slice(0, -2) + "." + onlyDigits.slice(-2)
+    event.target.value = maskCurrency(digitsFloat)
+}
+
+const maskCurrency = (valor, locale = 'pt-BR', currency = 'BRL') => {
+    return new Intl.NumberFormat(locale, {
+        style: 'currency',
+        currency
+    }).format(valor)
+}
+
+const formatCurrency = (value, currency, localeString) => {
+    const options = { style: "currency", currency }
+    return value.toLocaleString(localeString, options)
+}
+
 $(function() {
     $('#autor-multiple-selected').multiselect({
         nonSelectedText: 'Selecione um ou mais autores'
     });
+
+
+    $("#datepicker").datepicker({
+        autoclose: true,
+        format: "yyyy",
+        viewMode: "years",
+        minViewMode: "years",
+        endDate: "today",
+    });
+
 });

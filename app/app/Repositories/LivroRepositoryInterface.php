@@ -2,17 +2,16 @@
 
 namespace App\Repositories;
 
-use App\DTO\CreateAutorDTO;
-use App\DTO\UpdateAutorDTO;
-use App\Models\Autor;
+use App\DTO\CreateLivroDTO;
+use App\DTO\UpdateLivroDTO;
+use App\Models\Livro;
 use Illuminate\Database\Eloquent\Collection;
-use \stdClass;
 
 interface LivroRepositoryInterface
 {
     public function getAll(string $filter = null): Collection;
-    public function findOne(string $id): stdClass|null;
+    public function findOne(string $id): Livro|null;
     public function delete(string $id): void;
-    public function create(CreateAutorDTO $dto): Autor;
-    public function update(UpdateAutorDTO $dto): stdClass|null;
+    public function create(CreateLivroDTO $dto): Livro;
+    public function update(UpdateLivroDTO $dto): Livro|null;
 }

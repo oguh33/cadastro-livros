@@ -11,4 +11,9 @@ class RelatorioController extends Controller
         return view('relatorio/index');
 
     }
+
+    public function livros()
+    {
+        return view('relatorio/livros');
+    }
 }

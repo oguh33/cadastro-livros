@@ -2,12 +2,13 @@
 
 namespace App\DTO;
 
-use App\Http\Requests\StoreAutorRequest;
-use App\Http\Requests\StoreLivroRequest;
 
-class CreateLivroDTO
+use App\Http\Requests\UpdateLivroRequest;
+
+class UpdateLivroDTO
 {
     public function __construct(
+        public string $codl,
         public string $titulo,
         public string $editora,
         public string $edicao,
@@ -18,10 +19,11 @@ class CreateLivroDTO
     )
     {}
 
-    public static function makeFromRequest(StoreLivroRequest $request): self
+    public static function makeFromRequest(UpdateLivroRequest $request, string $codl): self
     {
 
         return new self(
+            $codl,
             $request->titulo,
             $request->editora,
             $request->edicao,

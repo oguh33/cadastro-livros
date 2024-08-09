@@ -15,4 +15,10 @@ class Autor extends Model
     protected $fillable = [
         'nome',
     ];
+
+    public function livros()
+    {
+        return $this->belongsToMany(Livro::class, 'livro_autor', 'autor_codAu', 'livro_codl')
+            ->withTimestamps();
+    }
 }
