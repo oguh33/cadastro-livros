@@ -9,7 +9,7 @@
     </div>
 </div>
 <div class="mt-4">
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th scope="col">Nome</th>

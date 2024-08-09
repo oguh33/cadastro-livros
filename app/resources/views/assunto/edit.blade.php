@@ -3,7 +3,7 @@
 
 <div class="d-flex justify-content-center mt-5">
     <div>
-        <h1 class="text-center mb-4">Editar assunto</h1> <!-- Título adicionado -->
+        <h1 class="text-center mb-4">Editar assunto</h1>
 
 
         @if ( $errors->any() )
@@ -24,7 +24,7 @@
 
             <div class="text-center">
                 <button type="button" class="btn btn-light mr-3" onclick="redirect('/assunto')">Voltar</button>
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <button type="submit" class="btn btn-primary">Salvar</button>
             </div>
         </form>
     </div>
