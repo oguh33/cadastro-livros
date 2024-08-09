@@ -30,59 +30,37 @@ class AutorEloquent implements AutorRepositoryInterface
 
     public function findOne(string $id): stdClass|null
     {
-        try {
-            $autor = $this->model->find($id);
-            if( !$autor ) {
-                return null;
-            }
+        $autor = $this->model->find($id);
 
-            return (object) $autor->toArray();
-
-        } catch (\Exception $e) {
-            throw new \Exception("Ocorreu um erro ao localizar o autor: $id");
+        if( !$autor ) {
+            return null;
         }
 
+        return (object) $autor->toArray();
     }
 
     public function delete(string $id): void
     {
-        try {
-            $this->model->findOrFail($id)->delete();
-        } catch (\Exception $e) {
-            throw new \Exception("Ocorreu um erro ao excluir o autor");
-        }
+        $this->model->findOrFail($id)->delete();
     }
 
     public function create(CreateAutorDTO $dto): Autor
     {
-        try {
-
-            $autor = $this->model->create( (array) $dto );
-            return $autor;
-
-        } catch (\Exception $e) {
-            throw new \Exception("Ocorreu um erro ao cadastrar o novo autor");
-        }
+        $autor = $this->model->create( (array) $dto );
+        return $autor;
     }
 
     public function update(UpdateAutorDTO $dto): stdClass|null
     {
-
-        try {
-
-            if( !$autor = $this->model->find($dto->codAu) ) {
-                return null;
-            }
-
-            $autor->update(
-                (array) $dto
-            );
-
-            return (object) $autor->toArray();
-
-        } catch (\Exception $e) {
-            throw new \Exception("Ocorreu um erro ao editar o autor");
+        if( !$autor = $this->model->find($dto->codAu) ) {
+            return null;
         }
+
+        $autor->update(
+            (array) $dto
+        );
+
+        return (object) $autor->toArray();
     }
 
 }
