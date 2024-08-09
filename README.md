@@ -1,61 +1,61 @@
 
-# Setup Docker PHP MySQL Laravel - Cadastrar Livros
+# 📚 Setup Docker PHP MySQL Laravel - Cadastro de Livros
 
-### Siga as instruções abaixo para configurar e executar o projeto.
+### 🚀 Siga as instruções abaixo para configurar e executar o projeto.
 
-## Instruções
+## 🛠️ Instruções
 
-1. **Clone o repositório:**
-   ```
+1. **Clone o repositório:**  
+   ```bash
    git clone https://github.com/oguh33/cadastro-livros.git
    ```
 
-2. **Inicie o serviço Docker:**
+2. **Inicie o serviço Docker:**  
    Se o Docker não estiver iniciado, suba o serviço com o seguinte comando:
 
-   - **Primeira execução (com build):**
-     ```
+   - **Primeira execução (com build):**  
+     ```bash
      docker-compose up --build 
      ```
 
-   - **Execuções subsequentes (sem build):**
-     ```
+   - **Execuções subsequentes (sem build):**  
+     ```bash
      docker-compose up -d
      ```
 
-3. **Acesse o container da aplicação:**
+3. **Acesse o container da aplicação:**  
    Entre no container da aplicação para rodar o Composer:
-   ```
+   ```bash
    docker-compose exec app bash
    ```
 
-4. **Configure o Composer:**
+4. **Configure o Composer:**  
    Navegue até o diretório da aplicação e instale as dependências do Composer:
-   ```
+   ```bash
    cd app
    composer install 
    ```
 
-5. **Crie o arquivo `.env` a partir de uma copia do arquivo `.env.example`:**
-   Ainda dentro do container e no diretório `app`:
-   ```
+5. **Crie o arquivo `.env`:**  
+   Crie uma cópia do arquivo `.env.example` para configurar as variáveis de ambiente:
+   ```bash
    cp .env.example .env
    ```
 
-6. **Execute o comando de migrations do banco de dados:**
-   Ainda no container, crie as tabelas do banco de dados usando as migrações:
-   ```
+6. **Execute as migrações do banco de dados:**  
+   Crie as tabelas do banco de dados usando as migrações do Laravel:
+   ```bash
    php artisan migrate
    ```
 
-7. **Finalize e saia do container (opcional):**
+7. **Finalize e saia do container (opcional):**  
    Após rodar as migrações, você pode sair do container:
-   ```
+   ```bash
    exit
    ```
 
-8. **Acesse a aplicação:**
-   O serviço estará disponível na porta 8000:
-   ```
+8. **Acesse a aplicação:**  
+   O serviço estará disponível na porta 8000. Clique [aqui](http://localhost:8000) para acessar a aplicação.
+   ```bash
    http://localhost:8000
    ```
