@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\DTO\RelatorioLivroDTO;
-use App\Http\Requests\RelatorioLivroRequest;
+use App\Http\Requests\RelatorioBookRequest;
 use App\Services\SubjectService;
-use App\Services\AutorService;
-use App\Services\LivroService;
+use App\Services\AuthorService;
+use App\Services\BookService;
 use App\Services\RelatorioService;
 
 class RelatorioController extends Controller
 {
-    public function index(AutorService $autorService, SubjectService $assuntoService)
+    public function index(AuthorService $autorService, SubjectService $assuntoService)
     {
         $autores  = $autorService->getAll();
         $assuntos = $assuntoService->getAll();
@@ -19,7 +19,7 @@ class RelatorioController extends Controller
         return view('relatorio/index', compact('autores', 'assuntos'));
     }
 
-    public function livros(RelatorioLivroRequest $request, RelatorioService $service)
+    public function livros(RelatorioBookRequest $request, RelatorioService $service)
     {
         $results = $service->findBy(
             RelatorioLivroDTO::makeFromRequest($request)

@@ -3,9 +3,9 @@
 namespace App\DTO;
 
 
-use App\Http\Requests\UpdateLivroRequest;
+use App\Http\Requests\UpdateBookRequest;
 
-class UpdateLivroDTO
+class UpdateBookDTO
 {
     public function __construct(
         public string $codl,
@@ -19,7 +19,7 @@ class UpdateLivroDTO
     )
     {}
 
-    public static function makeFromRequest(UpdateLivroRequest $request, string $codl): self
+    public static function makeFromRequest(UpdateBookRequest $request, string $codl): self
     {
 
         return new self(

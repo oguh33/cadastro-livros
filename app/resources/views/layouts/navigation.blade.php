@@ -15,7 +15,7 @@
                     <a href="{{ route('subject.index') }}" class="nav-link"><i class="fas fa-cogs"></i> Assuntos</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('autor.index') }}" class="nav-link"><i class="fas fa-address-card"></i> Autores</a>
+                    <a href="{{ route('author.index') }}" class="nav-link"><i class="fas fa-address-card"></i> Autores</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('relatorio.index') }}" class="nav-link"><i class="fas fa-list"></i> Relatórios</a>

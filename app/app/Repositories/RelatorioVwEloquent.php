@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\DTO\RelatorioLivroDTO;
-use App\Models\Livro;
+use App\Models\Book;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -11,7 +11,7 @@ class RelatorioVwEloquent implements RelatorioVwRepositoryInterface
 {
 
     public function __construct(
-        protected Livro $modelLivro
+        protected Book $modelLivro
     )
     { }
 

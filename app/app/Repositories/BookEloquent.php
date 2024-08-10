@@ -2,24 +2,24 @@
 
 namespace App\Repositories;
 
-use App\DTO\CreateAutorDTO;
-use App\DTO\CreateLivroDTO;
+use App\DTO\CreateAuthorDTO;
+use App\DTO\CreateBookDTO;
 use App\DTO\RelatorioLivroDTO;
-use App\DTO\UpdateAutorDTO;
-use App\DTO\UpdateLivroDTO;
+use App\DTO\UpdateAuthorDTO;
+use App\DTO\UpdateBookDTO;
 use App\Models\Subject;
-use App\Models\Autor;
-use App\Models\Livro;
+use App\Models\Author;
+use App\Models\Book;
 use Illuminate\Database\Eloquent\Collection;
 use \stdClass;
 
-class LivroEloquent implements LivroRepositoryInterface
+class BookEloquent implements BookRepositoryInterface
 {
 
     public function __construct(
-        protected Livro   $modelLivro,
-        protected Autor   $modelAutor,
-        protected Subject $modelAssunto,
+        protected Book    $modelBook,
+        protected Author  $modelAuthor,
+        protected Subject $modelSubject,
     )
     { }
 
@@ -27,8 +27,8 @@ class LivroEloquent implements LivroRepositoryInterface
     {
         try {
 
-            return $this->modelLivro
-                ->with('assuntos', 'autores')
+            return $this->modelBook
+                ->with('subjects', 'authors')
                 ->where(function ($query) use ($filter) {
                     if($filter) {
                         $query->where('titulo', 'like', "%$filter%");
@@ -41,17 +41,17 @@ class LivroEloquent implements LivroRepositoryInterface
         }
     }
 
-    public function findOne(string $id): Livro|null
+    public function findOne(string $id): Book|null
     {
         try {
 
-            $livro = $this->modelLivro->with('assuntos', 'autores')->find($id);
+            $book = $this->modelBook->with('subjects', 'authors')->find($id);
 
-            if( !$livro ) {
-                throw new \Exception("Não foi possível encontrar o livro ($id)");
+            if( !$book ) {
+               return null;
             }
 
-            return $livro;
+            return $book;
 
         } catch (\Exception $e) {
             throw new \Exception("Ocorreu um erro ao consulta o livro");
@@ -62,24 +62,24 @@ class LivroEloquent implements LivroRepositoryInterface
     {
         try {
 
-            $livro = $this->modelLivro->find($id);
-            if( !$livro ) {
+            $book = $this->modelBook->find($id);
+            if( !$book ) {
                 throw new \Exception("Não foi possível remover. Erro ao consular o livro ($id)");
             }
-            $livro->assuntos()->detach();
-            $livro->autores()->detach();
-            $livro->delete();
+            $book->subjects()->detach();
+            $book->authors()->detach();
+            $book->delete();
 
         } catch (\Exception $e) {
             throw new \Exception("Ocorreu um erro ao excluir o livro ($id)");
         }
     }
 
-    public function create(CreateLivroDTO $dto): Livro
+    public function create(CreateBookDTO $dto): Book
     {
         try {
 
-            $livro = $this->modelLivro->create([
+            $book = $this->modelBook->create([
                 'titulo' => $dto->titulo,
                 'editora' => $dto->editora,
                 'edicao' => $dto->edicao,
@@ -87,28 +87,28 @@ class LivroEloquent implements LivroRepositoryInterface
                 'valor' => $dto->valor
             ]);
 
-            if( !$livro ) {
+            if( !$book ) {
                 throw new \Exception("Não foi possível cadastrar o livro");
             }
 
             foreach ($dto->autor_codAu as $autorCodAu) {
-                $autor = $this->modelAutor->find($autorCodAu);
-                if( !$autor ) {
+                $author = $this->modelAuthor->find($autorCodAu);
+                if( !$author ) {
                     throw new \Exception("Não foi possível vincular o autor ao livro");
                 }
 
-                $autores[] = $autor->codAu;
+                $authors[] = $author->codAu;
             }
-            $livro->autores()->attach($autores);
+            $book->authors()->attach($authors);
 
-            $assunto = Subject::find($dto->assunto_codAs);
-            if( !$assunto ) {
+            $subject = Subject::find($dto->assunto_codAs);
+            if( !$subject ) {
                 throw new \Exception("Não foi possível vincular o assunto ao livro");
             }
-            $assuntos[] = $assunto->codAs;
-            $livro->assuntos()->attach($assuntos);
+            $subjects[] = $subject->codAs;
+            $book->subjects()->attach($subjects);
 
-            return $livro;
+            return $book;
 
         } catch (\Exception $e) {
             throw new \Exception("Ocorreu um erro ao cadastrar o livro");
@@ -116,15 +116,15 @@ class LivroEloquent implements LivroRepositoryInterface
 
     }
 
-    public function update(UpdateLivroDTO $dto): Livro|null
+    public function update(UpdateBookDTO $dto): Book|null
     {
         try {
 
-            if( !$livro = $this->modelLivro->find($dto->codl) ) {
+            if( !$book = $this->modelBook->find($dto->codl) ) {
                 throw new \Exception("Não foi possível encontrar o livro para editar.");
             }
 
-            $livro->update([
+            $book->update([
                 'titulo' => $dto->titulo,
                 'editora' => $dto->editora,
                 'edicao' => $dto->edicao,
@@ -132,16 +132,16 @@ class LivroEloquent implements LivroRepositoryInterface
                 'valor' => $dto->valor
             ]);
 
-            $autores = $dto->autor_codAu;
-            $assuntos = $dto->assunto_codAs;
-            if( !is_array($assuntos) ) {
-                $assuntos = [$assuntos];
+            $authors = $dto->autor_codAu;
+            $subjects = $dto->assunto_codAs;
+            if( !is_array($subjects) ) {
+                $subjects = [$subjects];
             }
 
-            $livro->assuntos()->sync($assuntos);
-            $livro->autores()->sync($autores);
+            $book->subjects()->sync($subjects);
+            $book->authors()->sync($authors);
 
-            return $livro;
+            return $book;
 
         }catch (\Exception $e) {
             throw new \Exception("Ocorreu um erro ao editar o livro");

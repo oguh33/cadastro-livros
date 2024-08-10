@@ -2,10 +2,10 @@
 
 namespace App\DTO;
 
-use App\Http\Requests\StoreAutorRequest;
-use App\Http\Requests\StoreLivroRequest;
+use App\Http\Requests\StoreAuthorRequest;
+use App\Http\Requests\StoreBookRequest;
 
-class CreateLivroDTO
+class CreateBookDTO
 {
     public function __construct(
         public string $titulo,
@@ -18,7 +18,7 @@ class CreateLivroDTO
     )
     {}
 
-    public static function makeFromRequest(StoreLivroRequest $request): self
+    public static function makeFromRequest(StoreBookRequest $request): self
     {
 
         return new self(

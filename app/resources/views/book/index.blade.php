@@ -5,7 +5,7 @@
 
 <div class="d-flex justify-content-end">
     <div class="d-flex">
-        <a href="{{ route('livro.create') }}"
+        <a href="{{ route('book.create') }}"
            class="btn btn-success mr-2" >Cadastrar livro</a>
     </div>
 </div>
@@ -24,29 +24,29 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($livros as $livro)
+        @foreach($books as $book)
             <tr>
-                <td>{{ $livro->titulo }}</td>
-                <td>{{ $livro->editora }}</td>
-                <td>{{ $livro->edicao }}</td>
-                <td>{{ $livro->anoPublicacao }}</td>
-                <td>{{ $livro->valor }}</td>
+                <td>{{ $book->titulo }}</td>
+                <td>{{ $book->editora }}</td>
+                <td>{{ $book->edicao }}</td>
+                <td>{{ $book->anoPublicacao }}</td>
+                <td>{{ $book->valor }}</td>
                 <td>
-                    @foreach($livro->assuntos as $assunto)
-                     <span> {{ $assunto->descricao }} </span> <br/>
+                    @foreach($book->subjects as $subjects)
+                     <span> {{ $subjects->descricao }} </span> <br/>
                     @endforeach
                 </td>
                 <td>
-                    @foreach($livro->autores as $autor)
-                    <li> {{ $autor->nome }} </li>
+                    @foreach($book->authors as $author)
+                    <li> {{ $author->nome }} </li>
                     @endforeach
                 </td>
                 <td class="text-right">
-                    <a href="{{ route('livro.edit', $livro->codl) }}"  class="btn btn-primary">
+                    <a href="{{ route('book.edit', $book->codl) }}"  class="btn btn-primary">
                         <i class="bi bi-pencil"></i> Editar
                     </a>
                     <button type="button" class="btn btn-danger"
-                            onclick="_activeModal('{{route('livro.destroy', $livro->codl)}}', 'Realmente deseja remover o livro <b>{{ $livro->titulo }}</b>?')">
+                            onclick="_activeModal('{{route('book.destroy', $book->codl)}}', 'Realmente deseja remover o livro <b>{{ $book->titulo }}</b>?')">
                         <i class="bi bi-trash"></i> Excluir
                     </button>
                     @csrf()

@@ -5,7 +5,7 @@
 
 <div class="d-flex justify-content-end">
     <div class="d-flex">
-        <a href="{{ route('autor.create') }}" class="btn btn-success mr-2">Cadastrar autor</a>
+        <a href="{{ route('author.create') }}" class="btn btn-success mr-2">Cadastrar autor</a>
     </div>
 </div>
 <div class="mt-4">
@@ -17,15 +17,15 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($autores as $autor)
+        @foreach($authors as $author)
             <tr>
-                <td>{{ $autor->nome }}</td>
+                <td>{{ $author->nome }}</td>
                 <td class="text-right">
-                    <a href="{{ route('autor.edit', $autor->codAu) }}"  class="btn btn-primary">
+                    <a href="{{ route('author.edit', $author->codAu) }}"  class="btn btn-primary">
                         <i class="bi bi-pencil"></i> Editar
                     </a>
                     <button type="button" class="btn btn-danger"
-                            onclick="_activeModal('{{route('autor.destroy', $autor->codAu)}}', 'Realmente deseja remover o autor <b>{{ $autor->nome }}</b>?')">
+                            onclick="_activeModal('{{route('author.destroy', $author->codAu)}}', 'Realmente deseja remover o autor <b>{{ $author->nome }}</b>?')">
                         <i class="bi bi-trash"></i> Excluir
                     </button>
                     @csrf()

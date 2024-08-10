@@ -2,17 +2,17 @@
 
 namespace App\Repositories;
 
-use App\DTO\CreateAutorDTO;
-use App\DTO\UpdateAutorDTO;
-use App\Models\Autor;
+use App\DTO\CreateAuthorDTO;
+use App\DTO\UpdateAuthorDTO;
+use App\Models\Author;
 use Illuminate\Database\Eloquent\Collection;
 use \stdClass;
 
-class AutorEloquent implements AutorRepositoryInterface
+class AuthorEloquent implements AuthorRepositoryInterface
 {
 
     public function __construct(
-        protected Autor $model
+        protected Author $model
     )
     { }
 
@@ -53,7 +53,7 @@ class AutorEloquent implements AutorRepositoryInterface
         }
     }
 
-    public function create(CreateAutorDTO $dto): Autor
+    public function create(CreateAuthorDTO $dto): Author
     {
         try {
 
@@ -65,7 +65,7 @@ class AutorEloquent implements AutorRepositoryInterface
         }
     }
 
-    public function update(UpdateAutorDTO $dto): stdClass|null
+    public function update(UpdateAuthorDTO $dto): stdClass|null
     {
 
         try {

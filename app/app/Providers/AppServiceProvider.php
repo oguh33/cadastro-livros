@@ -4,10 +4,10 @@ namespace App\Providers;
 
 use App\Repositories\SubjectEloquent;
 use App\Repositories\SubjectRepositoryInterface;
-use App\Repositories\AutorEloquent;
-use App\Repositories\AutorRepositoryInterface;
-use App\Repositories\LivroEloquent;
-use App\Repositories\LivroRepositoryInterface;
+use App\Repositories\AuthorEloquent;
+use App\Repositories\AuthorRepositoryInterface;
+use App\Repositories\BookEloquent;
+use App\Repositories\BookRepositoryInterface;
 use App\Repositories\RelatorioVwEloquent;
 use App\Repositories\RelatorioVwRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
@@ -20,16 +20,16 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(
-                AutorRepositoryInterface::class,
-                AutorEloquent::class);
+                AuthorRepositoryInterface::class,
+                AuthorEloquent::class);
 
         $this->app->bind(
             SubjectRepositoryInterface::class,
             SubjectEloquent::class);
 
         $this->app->bind(
-            LivroRepositoryInterface::class,
-            LivroEloquent::class);
+            BookRepositoryInterface::class,
+            BookEloquent::class);
 
         $this->app->bind(
             RelatorioVwRepositoryInterface::class,

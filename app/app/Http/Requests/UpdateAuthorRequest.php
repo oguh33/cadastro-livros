@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAutorRequest extends FormRequest
+class UpdateAuthorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,17 +22,22 @@ class StoreAutorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => 'required|min:3|max:40|unique:autor'
+            'nome' => [
+                'required',
+                'min:3',
+                'max:40',
+                "unique:autor,nome,{$this->id},codAu"
+            ]
         ];
     }
 
     public function messages(): array
     {
         return [
-            'nome.required' => 'O nome do Autor é obrigatório',
-            'nome.min' => 'O nome do Autor deve ter no mínimo 3 caracteres',
-            'nome.max' => 'O nome do Autor deve ter no máximo 40 caracteres',
-            'nome.unique' => 'O nome do Autor já foi cadastrado',
+            'nome.required' => 'A nome do autor é obrigatório',
+            'nome.min' => 'A nome do autor deve ter no mínimo 3 caracteres',
+            'nome.max' => 'A nome do autor deve ter no máximo 40 caracteres',
+            'nome.unique' => 'A nome do autor já foi cadastrado',
         ];
     }
 }

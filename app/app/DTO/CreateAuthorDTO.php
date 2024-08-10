@@ -2,16 +2,16 @@
 
 namespace App\DTO;
 
-use App\Http\Requests\StoreAutorRequest;
+use App\Http\Requests\StoreAuthorRequest;
 
-class CreateAutorDTO
+class CreateAuthorDTO
 {
     public function __construct(
         public string $nome
     )
     {}
 
-    public static function makeFromRequest(StoreAutorRequest $request): self
+    public static function makeFromRequest(StoreAuthorRequest $request): self
     {
         return new self(
             $request->nome

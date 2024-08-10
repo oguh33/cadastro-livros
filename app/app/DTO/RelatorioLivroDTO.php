@@ -2,9 +2,9 @@
 
 namespace App\DTO;
 
-use App\Http\Requests\RelatorioLivroRequest;
-use App\Http\Requests\StoreAutorRequest;
-use App\Http\Requests\StoreLivroRequest;
+use App\Http\Requests\RelatorioBookRequest;
+use App\Http\Requests\StoreAuthorRequest;
+use App\Http\Requests\StoreBookRequest;
 
 class RelatorioLivroDTO
 {
@@ -18,7 +18,7 @@ class RelatorioLivroDTO
     )
     {}
 
-    public static function makeFromRequest(RelatorioLivroRequest $request): self
+    public static function makeFromRequest(RelatorioBookRequest $request): self
     {
         return new self(
             $request->titulo,

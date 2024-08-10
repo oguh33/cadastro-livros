@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\DTO\CreateSubjectDTO;
 use App\DTO\UpdateSubjectDTO;
-use App\DTO\UpdateAutorDTO;
+use App\DTO\UpdateAuthorDTO;
 use App\Models\Subject;
 use Illuminate\Database\Eloquent\Collection;
 use \stdClass;

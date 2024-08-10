@@ -2,9 +2,9 @@
 
 namespace App\DTO;
 
-use App\Http\Requests\StoreAutorRequest;
+use App\Http\Requests\StoreAuthorRequest;
 use App\Http\Requests\UpdateSubjectRequest;
-use App\Http\Requests\UpdateAutorRequest;
+use App\Http\Requests\UpdateAuthorRequest;
 
 class UpdateSubjectDTO
 {

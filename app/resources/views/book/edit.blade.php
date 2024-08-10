@@ -3,27 +3,24 @@
 
 <div class="d-flex justify-content-center mt-5">
     <div>
-        <h1 class="text-center mb-4">Cadastrar livro</h1>
+        <h1 class="text-center mb-4">Editar livro</h1>
+
 
         @if ( $errors->any() )
-        <div class="alert alert-danger">
+            <div class="alert alert-danger">
                 @foreach($errors->all() as $error)
-                <li>{{ $error }}</li>
+                    {{ $error }}
                 @endforeach
-        </div>
+            </div>
         @endif
 
-        <form method="post" action="{{ route('livro.store') }}">
+        <form method="post" action="{{ route('book.update', $book->codl) }}">
             @csrf
             <div class="mb-4 d-flex flex-column">
-                <label for="nome" class="col-sm-12 col-form-label">Título</label>
+                @method('put')
+                <label for="nome" class="col-sm-12 col-form-label">Nome do autor</label>
                 <div class="col-sm-12">
-                    <input autofocus type="text"
-                           required
-                           placeholder="Digite o título"
-                           class="form-control"
-                           value="{{ old('titulo') }}"
-                           name="titulo" >
+                    <input required autofocus type="text" placeholder="Digite a nome do autor" value="{{ $book->titulo }}" class="form-control" name="titulo">
                 </div>
             </div>
 
@@ -34,7 +31,7 @@
                            required
                            placeholder="Digite o editora"
                            class="form-control"
-                           value="{{ old('editora') }}"
+                           value="{{ $book->editora }}"
                            name="editora" >
                 </div>
             </div>
@@ -46,7 +43,7 @@
                            required
                            placeholder="Digite a edição"
                            class="form-control"
-                           value="{{ old('edicao') }}"
+                           value="{{ $book->edicao }}"
                            name="edicao" >
                 </div>
             </div>
@@ -55,13 +52,13 @@
                 <label for="nome" class="col-sm-12 col-form-label">Ano da publicação</label>
                 <div class="col-sm-12">
                     <div class="input-group">
-                    <input autofocus type="text"
-                           required
-                           id="datepicker"
-                           placeholder="Selecione o ano"
-                           class="form-control"
-                           value="{{ old('anoPublicacao') }}"
-                           name="anoPublicacao" >
+                        <input autofocus type="text"
+                               required
+                               id="datepicker"
+                               placeholder="Selecione o ano"
+                               class="form-control"
+                               value="{{ $book->anoPublicacao }}"
+                               name="anoPublicacao" >
                     </div>
                 </div>
             </div>
@@ -74,7 +71,7 @@
                            placeholder="R$ 100,00"
                            onInput="mascaraMoeda(event);"
                            class="form-control"
-                           value="{{ old('valor') }}"
+                           value="{{ $book->valor }}"
                            name="valor" >
                 </div>
             </div>
@@ -83,9 +80,8 @@
                 <label for="nome" class="col-sm-12 col-form-label">Assunto</label>
                 <div class="col-sm-12">
                     <select class="form-control" name="assunto_codAs" required>
-                        <option value="" disabled selected>Selecione um assunto</option>
-                        @foreach ($assuntos as $assunto)
-                        <option value="{{ $assunto->codAs }}" @if(old('assunto_codAs')== $assunto->codAs) {{'selected'}} @endif>{{ $assunto->descricao }}</option>
+                        @foreach ($subjects as $subject)
+                        <option value="{{ $subject->codAs }}" {{ $book->subjects->contains($subject->codAs) ? 'selected' : '' }}>{{ $subject->descricao }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -94,18 +90,19 @@
             <div class="mb-4 d-flex flex-column">
                 <label for="autor" class="col-sm-12 col-form-label">Autor</label>
                 <div class="col-sm-12">
-                    <select class="form-control" name="autor_codAu[]" required id="autor-multiple-selected" multiple="multiple">
-                        @foreach ($autores as $autor)
-                            <option value="{{ $autor->codAu }}" {{ (collect(old('autor_codAu'))->contains($autor->codAu)) ? 'selected':'' }}>{{ $autor->nome }}</option>
+                    <select class="form-control" name="autor_codAu[]" required id="author-multiple-selected" multiple="multiple">
+                        @foreach ($authors as $author)
+                        <option value="{{ $author->codAu }}" {{ $book->authors->contains($author->codAu) ? 'selected' : '' }}>{{ $author->nome }}</option>
                         @endforeach
                     </select>
                 </div>
             </div>
 
             <div class="text-center">
-                <button type="button" class="btn btn-light mr-3" onclick="redirect('/assunto')">Voltar</button>
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <button type="button" class="btn btn-light mr-3" onclick="redirect('/book')">Voltar</button>
+                <button type="submit" class="btn btn-primary">Salvar</button>
             </div>
         </form>
     </div>
+
     @endsection

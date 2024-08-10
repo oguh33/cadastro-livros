@@ -44,15 +44,15 @@ const formatCurrency = (value, currency, localeString) => {
 }
 
 $(function() {
-    $('#autor-multiple-selected').multiselect({
+    $('#author-multiple-selected').multiselect({
         nonSelectedText: 'Selecione um ou mais autores'
     });
 
-    $('#rel-autor-multiple-selected').multiselect({
+    $('#rel-author-multiple-selected').multiselect({
         nonSelectedText: 'Todos'
     });
 
-    $('#assunto-multiple-selected').multiselect({
+    $('#subject-multiple-selected').multiselect({
         nonSelectedText: 'Selecione um ou mais assuntos'
     });
 

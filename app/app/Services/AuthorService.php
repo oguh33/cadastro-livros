@@ -2,18 +2,18 @@
 
 namespace App\Services;
 
-use App\DTO\CreateAutorDTO;
-use App\DTO\UpdateAutorDTO;
-use App\Models\Autor;
-use App\Repositories\AutorRepositoryInterface;
+use App\DTO\CreateAuthorDTO;
+use App\DTO\UpdateAuthorDTO;
+use App\Models\Author;
+use App\Repositories\AuthorRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 use \stdClass;
 
-class AutorService
+class AuthorService
 {
 
     public function __construct(
-        protected AutorRepositoryInterface $repository
+        protected AuthorRepositoryInterface $repository
     ) {}
 
     public function getAll(string $filter = null): Collection
@@ -26,12 +26,12 @@ class AutorService
         return $this->repository->findOne($id);
     }
 
-    public function create(CreateAutorDTO $dto): Autor
+    public function create(CreateAuthorDTO $dto): Author
     {
         return $this->repository->create($dto);
     }
 
-    public function update(UpdateAutorDTO $dto): stdClass|null
+    public function update(UpdateAuthorDTO $dto): stdClass|null
     {
         return $this->repository->update($dto);
     }

@@ -13,7 +13,7 @@
         </div>
         @endif
 
-        <form method="post" action="{{ route('autor.store') }}">
+        <form method="post" action="{{ route('author.store') }}">
             @csrf
             <div class="mb-3 d-flex flex-column">
                 <label for="nome" class="col-sm-12 col-form-label">Nome do autor</label>
@@ -27,7 +27,7 @@
             </div>
 
             <div class="text-center">
-                <button type="button" class="btn btn-light mr-3" onclick="redirect('/autor')">Voltar</button>
+                <button type="button" class="btn btn-light mr-3" onclick="redirect('/author')">Voltar</button>
                 <button type="submit" class="btn btn-primary">Cadastrar</button>
             </div>
         </form>

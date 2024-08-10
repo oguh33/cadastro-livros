@@ -1,19 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LivroController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\SubjectController;
-use App\Http\Controllers\AutorController;
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\RelatorioController;
 
-Route::get('/', [LivroController::class, 'index']);
+Route::get('/', [BookController::class, 'index']);
 
-Route::delete('/livro/{id}', [LivroController::class, 'destroy'])->name('livro.destroy');
-Route::put('/livro/{id}', [LivroController::class, 'update'])->name('livro.update');
-Route::get('/livro/create', [LivroController::class, 'create'])->name('livro.create');
-Route::get('/livro', [LivroController::class, 'index'])->name('livro.index');
-Route::get('/livro/{id}/edit', [LivroController::class, 'edit'])->name('livro.edit');
-Route::post('/livro', [LivroController::class, 'store'])->name('livro.store');
+Route::delete('/book/{id}', [BookController::class, 'destroy'])->name('book.destroy');
+Route::put('/book/{id}', [BookController::class, 'update'])->name('book.update');
+Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
+Route::get('/book', [BookController::class, 'index'])->name('book.index');
+Route::get('/book/{id}/edit', [BookController::class, 'edit'])->name('book.edit');
+Route::post('/book', [BookController::class, 'store'])->name('book.store');
 
 
 Route::delete('/subject/{id}', [SubjectController::class, 'destroy'])->name('subject.destroy');
@@ -23,12 +23,12 @@ Route::get('/subject', [SubjectController::class, 'index'])->name('subject.index
 Route::get('/subject/{id}/edit', [SubjectController::class, 'edit'])->name('subject.edit');
 Route::post('/subject', [SubjectController::class, 'store'])->name('subject.store');
 
-Route::delete('/autor/{id}', [AutorController::class, 'destroy'])->name('autor.destroy');
-Route::put('/autor/{id}', [AutorController::class, 'update'])->name('autor.update');
-Route::get('/autor/{id}/edit', [AutorController::class, 'edit'])->name('autor.edit');
-Route::get('/autor/create', [AutorController::class, 'create'])->name('autor.create');
-Route::get('/autor', [AutorController::class, 'index'])->name('autor.index');
-Route::post('/autor', [AutorController::class, 'store'])->name('autor.store');
+Route::delete('/author/{id}', [AuthorController::class, 'destroy'])->name('author.destroy');
+Route::put('/author/{id}', [AuthorController::class, 'update'])->name('author.update');
+Route::get('/author/{id}/edit', [AuthorController::class, 'edit'])->name('author.edit');
+Route::get('/author/create', [AuthorController::class, 'create'])->name('author.create');
+Route::get('/author', [AuthorController::class, 'index'])->name('author.index');
+Route::post('/author', [AuthorController::class, 'store'])->name('author.store');
 
 Route::get('/relatorio', [RelatorioController::class, 'index'])->name('relatorio.index');
 Route::post('/relatorio/livros', [RelatorioController::class, 'livros'])->name('relatorio.livros');

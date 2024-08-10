@@ -16,9 +16,9 @@ class Subject extends Model
         'descricao',
     ];
 
-    public function livros()
+    public function books()
     {
-        return $this->belongsToMany(Livro::class, 'livro_assunto', 'assunto_codAs', 'livro_codl')
+        return $this->belongsToMany(Book::class, 'livro_assunto', 'assunto_codAs', 'livro_codl')
             ->withTimestamps();
     }
 }
