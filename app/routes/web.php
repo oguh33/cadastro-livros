@@ -1,12 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\RelatorioController;
 
-Route::get('/', [BookController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
 
 Route::delete('/book/{id}', [BookController::class, 'destroy'])->name('book.destroy');
 Route::put('/book/{id}', [BookController::class, 'update'])->name('book.update');
