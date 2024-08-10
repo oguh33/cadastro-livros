@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\DTO\RelatorioLivroDTO;
 use App\Http\Requests\RelatorioLivroRequest;
-use App\Services\AssuntoService;
+use App\Services\SubjectService;
 use App\Services\AutorService;
 use App\Services\LivroService;
 use App\Services\RelatorioService;
 
 class RelatorioController extends Controller
 {
-    public function index(AutorService $autorService, AssuntoService $assuntoService)
+    public function index(AutorService $autorService, SubjectService $assuntoService)
     {
         $autores  = $autorService->getAll();
         $assuntos = $assuntoService->getAll();

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LivroController;
-use App\Http\Controllers\AssuntoController;
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\AutorController;
 use App\Http\Controllers\RelatorioController;
 
@@ -16,12 +16,12 @@ Route::get('/livro/{id}/edit', [LivroController::class, 'edit'])->name('livro.ed
 Route::post('/livro', [LivroController::class, 'store'])->name('livro.store');
 
 
-Route::delete('/assunto/{id}', [AssuntoController::class, 'destroy'])->name('assunto.destroy');
-Route::put('/assunto/{id}', [AssuntoController::class, 'update'])->name('assunto.update');
-Route::get('/assunto/create', [AssuntoController::class, 'create'])->name('assunto.create');
-Route::get('/assunto', [AssuntoController::class, 'index'])->name('assunto.index');
-Route::get('/assunto/{id}/edit', [AssuntoController::class, 'edit'])->name('assunto.edit');
-Route::post('/assunto', [AssuntoController::class, 'store'])->name('assunto.store');
+Route::delete('/subject/{id}', [SubjectController::class, 'destroy'])->name('subject.destroy');
+Route::put('/subject/{id}', [SubjectController::class, 'update'])->name('subject.update');
+Route::get('/subject/create', [SubjectController::class, 'create'])->name('subject.create');
+Route::get('/subject', [SubjectController::class, 'index'])->name('subject.index');
+Route::get('/subject/{id}/edit', [SubjectController::class, 'edit'])->name('subject.edit');
+Route::post('/subject', [SubjectController::class, 'store'])->name('subject.store');
 
 Route::delete('/autor/{id}', [AutorController::class, 'destroy'])->name('autor.destroy');
 Route::put('/autor/{id}', [AutorController::class, 'update'])->name('autor.update');

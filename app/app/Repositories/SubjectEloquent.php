@@ -2,18 +2,18 @@
 
 namespace App\Repositories;
 
-use App\DTO\CreateAssuntoDTO;
-use App\DTO\UpdateAssuntoDTO;
+use App\DTO\CreateSubjectDTO;
+use App\DTO\UpdateSubjectDTO;
 use App\DTO\UpdateAutorDTO;
-use App\Models\Assunto;
+use App\Models\Subject;
 use Illuminate\Database\Eloquent\Collection;
 use \stdClass;
 
-class AssuntoEloquent implements AssuntoRepositoryInterface
+class SubjectEloquent implements SubjectRepositoryInterface
 {
 
     public function __construct(
-        protected Assunto $model
+        protected Subject $model
     )
     { }
 
@@ -61,7 +61,7 @@ class AssuntoEloquent implements AssuntoRepositoryInterface
         }
     }
 
-    public function create(CreateAssuntoDTO $dto): Assunto
+    public function create(CreateSubjectDTO $dto): Subject
     {
         try {
             $assunto = $this->model->create( (array) $dto );
@@ -71,7 +71,7 @@ class AssuntoEloquent implements AssuntoRepositoryInterface
         }
     }
 
-    public function update(UpdateAssuntoDTO $dto): stdClass|null
+    public function update(UpdateSubjectDTO $dto): stdClass|null
     {
         try {
 

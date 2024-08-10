@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Repositories\AssuntoEloquent;
-use App\Repositories\AssuntoRepositoryInterface;
+use App\Repositories\SubjectEloquent;
+use App\Repositories\SubjectRepositoryInterface;
 use App\Repositories\AutorEloquent;
 use App\Repositories\AutorRepositoryInterface;
 use App\Repositories\LivroEloquent;
@@ -24,8 +24,8 @@ class AppServiceProvider extends ServiceProvider
                 AutorEloquent::class);
 
         $this->app->bind(
-            AssuntoRepositoryInterface::class,
-            AssuntoEloquent::class);
+            SubjectRepositoryInterface::class,
+            SubjectEloquent::class);
 
         $this->app->bind(
             LivroRepositoryInterface::class,

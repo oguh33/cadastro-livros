@@ -12,18 +12,18 @@
             @endforeach
         @endif
 
-        <form method="post" action="{{ route('assunto.update', $assunto->codAs) }}">
+        <form method="post" action="{{ route('subject.update', $subject->codAs) }}">
             @csrf
             <div class="mb-3 d-flex flex-column">
                 @method('put')
                 <label for="nome" class="col-sm-12 col-form-label">Descrição do assunto</label>
                 <div class="col-sm-12">
-                    <input required autofocus type="text" value="{{ $assunto->descricao }}" class="form-control" name="descricao">
+                    <input required autofocus type="text" value="{{ $subject->descricao }}" class="form-control" name="descricao">
                 </div>
             </div>
 
             <div class="text-center">
-                <button type="button" class="btn btn-light mr-3" onclick="redirect('/assunto')">Voltar</button>
+                <button type="button" class="btn btn-light mr-3" onclick="redirect('/subject')">Voltar</button>
                 <button type="submit" class="btn btn-primary">Salvar</button>
             </div>
         </form>

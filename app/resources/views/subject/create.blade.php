@@ -13,13 +13,13 @@
         </div>
         @endif
 
-        <form method="post" action="{{ route('assunto.store') }}">
+        <form method="post" action="{{ route('subject.store') }}">
             @csrf
             <div class="mb-3 d-flex flex-column">
                 <label for="nome" class="col-sm-12 col-form-label">Descrição do assunto</label>
                 <div class="col-sm-12">
                     <input autofocus type="text"
-                           placeholder="Digite breve descrição do assunto"
+                           placeholder="Digite a descrição do assunto"
                            class="form-control"
                            value="{{ old('descricao') }}"
                            name="descricao" >
@@ -27,7 +27,7 @@
             </div>
 
             <div class="text-center">
-                <button type="button" class="btn btn-light mr-3" onclick="redirect('/assunto')">Voltar</button>
+                <button type="button" class="btn btn-light mr-3" onclick="redirect('/subject')">Voltar</button>
                 <button type="submit" class="btn btn-primary">Cadastrar</button>
             </div>
         </form>

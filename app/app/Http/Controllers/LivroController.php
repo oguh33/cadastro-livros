@@ -6,7 +6,7 @@ use App\DTO\CreateLivroDTO;
 use App\DTO\UpdateLivroDTO;
 use App\Http\Requests\StoreLivroRequest;
 use App\Http\Requests\UpdateLivroRequest;
-use App\Services\AssuntoService;
+use App\Services\SubjectService;
 use App\Services\AutorService;
 use App\Services\LivroService;
 
@@ -31,7 +31,7 @@ class LivroController extends Controller
 
     }
 
-    public function create(AutorService $autorService, AssuntoService $assuntoService)
+    public function create(AutorService $autorService, SubjectService $assuntoService)
     {
         try {
 
@@ -58,7 +58,7 @@ class LivroController extends Controller
         }
     }
 
-    public function edit(string $id, AutorService $autorService, AssuntoService $assuntoService)
+    public function edit(string $id, AutorService $autorService, SubjectService $assuntoService)
     {
         try {
 

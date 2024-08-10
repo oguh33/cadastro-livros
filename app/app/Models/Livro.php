@@ -33,7 +33,7 @@ class Livro extends Model
 
     public function assuntos()
     {
-        return $this->belongsToMany(Assunto::class, 'livro_assunto', 'livro_codl', 'assunto_codAs')
+        return $this->belongsToMany(Subject::class, 'livro_assunto', 'livro_codl', 'assunto_codAs')
             ->withTimestamps();
     }
 }

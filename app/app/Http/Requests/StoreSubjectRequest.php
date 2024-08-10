@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAssuntoRequest extends FormRequest
+class StoreSubjectRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,7 @@ class UpdateAssuntoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'descricao' => [
-                'required',
-                'min:2',
-                'max:20',
-                "unique:assunto,descricao,{$this->id},codAs"
-            ]
+            'descricao' => 'required|min:2|max:20|unique:assunto'
         ];
     }
 
@@ -35,9 +30,9 @@ class UpdateAssuntoRequest extends FormRequest
     {
         return [
             'descricao.required' => 'A descrição do assunto é obrigatória',
-            'descricao.min'      => 'A descrição do assunto deve ter no mínimo 3 caracteres',
-            'descricao.max'      => 'A descrição do assunto deve ter no máximo 20 caracteres',
-            'descricao.unique'   => 'A nome do assunto já foi cadastrado',
+            'descricao.min' => 'A descrição do assunto deve ter no mínimo 3 caracteres',
+            'descricao.max' => 'A descrição do assunto deve ter no máximo 20 caracteres',
+            'descricao.unique' => 'A assunto informado já foi cadastrado',
         ];
     }
 }

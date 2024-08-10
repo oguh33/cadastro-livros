@@ -3,10 +3,10 @@
 namespace App\DTO;
 
 use App\Http\Requests\StoreAutorRequest;
-use App\Http\Requests\UpdateAssuntoRequest;
+use App\Http\Requests\UpdateSubjectRequest;
 use App\Http\Requests\UpdateAutorRequest;
 
-class UpdateAssuntoDTO
+class UpdateSubjectDTO
 {
     public function __construct(
         public string $codAs,
@@ -14,7 +14,7 @@ class UpdateAssuntoDTO
     )
     {}
 
-    public static function makeFromRequest(UpdateAssuntoRequest $request, string $codAs): self
+    public static function makeFromRequest(UpdateSubjectRequest $request, string $codAs): self
     {
         return new self(
             $codAs,

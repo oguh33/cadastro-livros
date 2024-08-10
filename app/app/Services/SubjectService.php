@@ -2,18 +2,18 @@
 
 namespace App\Services;
 
-use App\DTO\CreateAssuntoDTO;
-use App\DTO\UpdateAssuntoDTO;
-use App\Models\Assunto;
-use App\Repositories\AssuntoRepositoryInterface;
+use App\DTO\CreateSubjectDTO;
+use App\DTO\UpdateSubjectDTO;
+use App\Models\Subject;
+use App\Repositories\SubjectRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 use \stdClass;
 
-class AssuntoService
+class SubjectService
 {
 
     public function __construct(
-        protected AssuntoRepositoryInterface $repository
+        protected SubjectRepositoryInterface $repository
     ) {}
 
     public function getAll(string $filter = null): Collection
@@ -26,12 +26,12 @@ class AssuntoService
         return $this->repository->findOne($id);
     }
 
-    public function create(CreateAssuntoDTO $dto): Assunto
+    public function create(CreateSubjectDTO $dto): Subject
     {
         return $this->repository->create($dto);
     }
 
-    public function update(UpdateAssuntoDTO $dto): stdClass|null
+    public function update(UpdateSubjectDTO $dto): stdClass|null
     {
         return $this->repository->update($dto);
     }

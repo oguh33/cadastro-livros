@@ -7,7 +7,7 @@ use App\DTO\CreateLivroDTO;
 use App\DTO\RelatorioLivroDTO;
 use App\DTO\UpdateAutorDTO;
 use App\DTO\UpdateLivroDTO;
-use App\Models\Assunto;
+use App\Models\Subject;
 use App\Models\Autor;
 use App\Models\Livro;
 use Illuminate\Database\Eloquent\Collection;
@@ -17,9 +17,9 @@ class LivroEloquent implements LivroRepositoryInterface
 {
 
     public function __construct(
-        protected Livro $modelLivro,
-        protected Autor $modelAutor,
-        protected Assunto $modelAssunto,
+        protected Livro   $modelLivro,
+        protected Autor   $modelAutor,
+        protected Subject $modelAssunto,
     )
     { }
 
@@ -101,7 +101,7 @@ class LivroEloquent implements LivroRepositoryInterface
             }
             $livro->autores()->attach($autores);
 
-            $assunto = Assunto::find($dto->assunto_codAs);
+            $assunto = Subject::find($dto->assunto_codAs);
             if( !$assunto ) {
                 throw new \Exception("Não foi possível vincular o assunto ao livro");
             }

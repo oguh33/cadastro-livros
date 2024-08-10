@@ -3,8 +3,10 @@
 namespace Tests\Unit;
 
 use App\DTO\CreateAutorDTO;
+use App\DTO\UpdateAutorDTO;
 use App\Http\Controllers\AutorController;
 use App\Http\Requests\StoreAutorRequest;
+use App\Http\Requests\UpdateAutorRequest;
 use App\Models\Autor;
 use App\Services\AutorService;
 use Illuminate\Http\RedirectResponse;
@@ -12,10 +14,14 @@ use Illuminate\Support\Facades\Validator;
 use Mockery;
 use Tests\TestCase;
 
+# php artisan test --filter=AutorControllerTest
 class AutorControllerTest extends TestCase
 {
 
-    public function test_store_successful()
+    protected $service;
+    protected $controller;
+
+    public function test_store_success()
     {
         // Mock da service AutorService
         $autorServiceMock = Mockery::mock(AutorService::class);
@@ -71,4 +77,66 @@ class AutorControllerTest extends TestCase
         $this->assertTrue($validator->fails());
         $this->assertArrayHasKey('nome', $validator->errors()->toArray());
     }
+
+    public function test_destroy_actor()
+    {
+
+        $autorId = '1';
+
+        $autorServiceMock = $this->createMock(AutorService::class);
+        $autorServiceMock->expects($this->once())
+            ->method('delete')
+            ->with($autorId);
+
+        $controller = new AutorController($autorServiceMock);
+
+
+        $response = $controller->destroy($autorId);
+
+        $this->assertInstanceOf(RedirectResponse::class, $response);
+        $this->assertEquals(route('autor.index'), $response->getTargetUrl());
+        $this->assertEquals('Autor removido com sucesso!', session('success'));
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        // Cria um mock do AutorService
+        $this->service = Mockery::mock(AutorService::class);
+
+        // Cria uma instância do AutorController usando o mock
+        $this->controller = new AutorController($this->service);
+    }
+
+    /*
+    public function testUpdateSuccess()
+    {
+
+        $id = '1';
+        $data = [
+            'nome' => 'Nome Atualizado'
+        ];
+
+        // Cria um mock do UpdateAutorRequest
+        $request = Mockery::mock(UpdateAutorRequest::class);
+        $request->shouldReceive('validated')->andReturn($data);
+
+        // Cria um DTO para o método update
+        $updateDTO = UpdateAutorDTO::makeFromRequest($request, $id);
+
+        // Configura o mock para o método update retornar um valo
+        $this->service->shouldReceive('update')
+            ->with($updateDTO)
+            ->andReturn(new \stdClass());
+
+        // Chama o método update do controlador
+        $response = $this->controller->update($request, $id);
+
+        // Verifica o redirecionamento e a mensagem de sucesso
+        $response->assertRedirect(route('autor.index'));
+        $response->assertSessionHas('success', 'Autor editado com sucesso!');
+    }
+    */
+
 }

@@ -12,7 +12,7 @@
                     <a href="/" class="nav-link"><i class="fas fa-book"></i> Livros</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('assunto.index') }}" class="nav-link"><i class="fas fa-cogs"></i> Assuntos</a>
+                    <a href="{{ route('subject.index') }}" class="nav-link"><i class="fas fa-cogs"></i> Assuntos</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('autor.index') }}" class="nav-link"><i class="fas fa-address-card"></i> Autores</a>
