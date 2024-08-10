@@ -10,8 +10,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
 use Tests\TestCase;
 
-# php artisan test --filter=AssuntoControllerTest
-class AssuntoControllerTest extends TestCase
+# php artisan test --filter=SubjectControllerTest
+class SubjectControllerTest extends TestCase
 {
 
     public function test_create_store_success()
