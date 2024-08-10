@@ -23,25 +23,25 @@ class AuthorControllerTest extends TestCase
 
     public function test_store_success()
     {
-        // Mock da service AuthorService
+        // Mock service AuthorService
         $autorServiceMock = Mockery::mock(AuthorService::class);
         $this->app->instance(AuthorService::class, $autorServiceMock);
 
-        // Mock da model Author
+        // Mock model Author
         $autorMock = Mockery::mock(Author::class);
         $autorMock->shouldReceive('create')->andReturn($autorMock);
 
-        // Monta a request
+        // Mount request
         $requestData = [
             'nome' => 'Nome do Author',
         ];
 
-        // Cria a request StoreAuthorRequest e valida
+        // Create request StoreAuthorRequest and validate
         $request = StoreAuthorRequest::create('/author', 'POST', $requestData);
         $request->setContainer($this->app)->setRedirector($this->app['redirect']);
         $request->validateResolved();
 
-        // Confirmando que o CreateAuthorDTO foi criado com dados corretos
+        // Confim CreateAuthorDTO was created whith the correct data
         $autorServiceMock->shouldReceive('create')
             ->once()
             ->with(Mockery::on(function (CreateAuthorDTO $dto) use ($requestData) {
@@ -49,13 +49,13 @@ class AuthorControllerTest extends TestCase
             }))
             ->andReturn($autorMock);
 
-        // Cria instancia da controller Author
+        // Create instance of the AuthorController
         $controller = new AuthorController($autorServiceMock);
 
-        // Chama o metodo store
+        // Call the method store
         $response = $controller->store($request);
 
-        //Verifica se foi de acordo com o esperado
+        //Verify if check if it is as expected
         $this->assertInstanceOf(RedirectResponse::class, $response);
         $this->assertEquals(route('author.index'), $response->getTargetUrl());
         $this->assertEquals('Autor cadastrado com sucesso!', $response->getSession()->get('success'));
@@ -63,16 +63,16 @@ class AuthorControllerTest extends TestCase
 
     public function test_store_validation_fails()
     {
-        // Preparar dados de solicitacao invalidos (nome curto)
+        // Prepare data request invalid (name short)
         $requestData = [
             'nome' => 'Au',
         ];
 
-        //Cria a request StoreAuthorRequest
+        //Create request StoreAuthorRequest
         $request = StoreAuthorRequest::create('/author', 'POST', $requestData);
         $request->setContainer($this->app)->setRedirector($this->app['redirect']);
 
-        // Validar as solicitacoes
+        // valid request
         $validator = Validator::make($requestData, $request->rules(), $request->messages());
         $this->assertTrue($validator->fails());
         $this->assertArrayHasKey('nome', $validator->errors()->toArray());
@@ -97,46 +97,5 @@ class AuthorControllerTest extends TestCase
         $this->assertEquals(route('author.index'), $response->getTargetUrl());
         $this->assertEquals('Autor removido com sucesso!', session('success'));
     }
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        // Cria um mock do AuthorService
-        $this->service = Mockery::mock(AuthorService::class);
-
-        // Cria uma instância do AuthorController usando o mock
-        $this->controller = new AuthorController($this->service);
-    }
-
-    /*
-    public function testUpdateSuccess()
-    {
-
-        $id = '1';
-        $data = [
-            'nome' => 'Nome Atualizado'
-        ];
-
-        // Cria um mock do UpdateAuthorRequest
-        $request = Mockery::mock(UpdateAuthorRequest::class);
-        $request->shouldReceive('validated')->andReturn($data);
-
-        // Cria um DTO para o método update
-        $updateDTO = UpdateAuthorDTO::makeFromRequest($request, $id);
-
-        // Configura o mock para o método update retornar um valo
-        $this->service->shouldReceive('update')
-            ->with($updateDTO)
-            ->andReturn(new \stdClass());
-
-        // Chama o método update do controlador
-        $response = $this->controller->update($request, $id);
-
-        // Verifica o redirecionamento e a mensagem de sucesso
-        $response->assertRedirect(route('autor.index'));
-        $response->assertSessionHas('success', 'Author editado com sucesso!');
-    }
-    */
 
 }
