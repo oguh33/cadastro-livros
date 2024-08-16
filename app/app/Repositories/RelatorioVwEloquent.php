@@ -22,7 +22,7 @@ class RelatorioVwEloquent implements RelatorioVwRepositoryInterface
         if( !is_null($dto->titulo) ) {
             $titulo = $dto->titulo;
             $dbQuery->where(function ($query) use ($titulo) {
-                    $query->where('$titulo', 'like', "%$titulo%");
+                    $query->where('titulo', 'like', "%$titulo%");
             });
         }
 
